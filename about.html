@@ -261,4 +261,37 @@ color: #fff !important;
 color: #fff !important;
 }
 </style>
+
+<script>
+// Simple fix that runs just runs 3 times then stops
+let fixCount = 0;
+function fixOnce() {
+  fixCount++;
+  if (fixCount > 3) return;
+
+  const header = document.querySelector('header');
+  if (header) {
+    const links = header.querySelectorAll('a');
+    for (let link of links) {
+      if (link.textContent.includes('Orbit Services')) {
+        link.innerHTML = '<img src="/assets/Main_Logo.jpeg" alt="Main logo" class="h-9 w-auto object-contain" /><span class="font-semibold tracking-tight text-lg">Services</span>';
+      }
+    }
+  }
+
+  const footer = document.querySelector('footer');
+  if (footer) {
+    const flexes = footer.querySelectorAll('.flex');
+    for (let flex of flexes) {
+      if (flex.textContent.includes('Orbit Services')) {
+        flex.innerHTML = '<img src="/assets/Main_Logo.jpeg" alt="Main logo" class="h-9 w-auto object-contain" /><span class="font-semibold text-lg"><span class="gradient-text">Services</span></span>';
+      }
+    }
+  }
+}
+
+setTimeout(fixOnce, 100);
+setTimeout(fixOnce, 500);
+setTimeout(fixOnce, 1000);
+</script>
 </body></html>
