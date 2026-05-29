@@ -294,4 +294,74 @@ setTimeout(fixOnce, 100);
 setTimeout(fixOnce, 500);
 setTimeout(fixOnce, 1000);
 </script>
+
+<style>
+.gradient-text {
+background: none !important;
+-webkit-background-clip: initial !important;
+background-clip: initial !important;
+-webkit-text-fill-color: #fff !important;
+color: #fff !important;
+}
+
+header nav a span,
+header nav a {
+color: #fff !important;
+}
+
+header nav a:hover span,
+header nav a:hover {
+color: #fff !important;
+}
+
+.text-muted-foreground {
+color: #fff !important;
+}
+
+/* Company names hover effect */
+.animate-marquee span {
+transition: all 0.3s ease;
+}
+
+.animate-marquee span:hover {
+transform: scale(1.1);
+text-shadow: 0 0 15px rgba(147, 51, 234, 0.9), 0 0 30px rgba(147, 51, 234, 0.5), 0 0 45px rgba(147, 51, 234, 0.3);
+}
+</style>
+
+<script>
+function fixBrandOnly() {
+// Fix header brand: first link in header that has flex items-center gap-2
+const header = document.querySelector('header');
+if (header) {
+const firstAnchor = header.querySelector('a.flex.items-center.gap-2');
+if (firstAnchor) {
+firstAnchor.innerHTML = `
+<img src="/assets/Main_Logo.jpeg" alt="Main logo" class="h-9 w-auto object-contain" />
+<span class="font-semibold tracking-tight text-lg">Services</span>
+`;
+}
+}
+
+// Fix footer brand: first flex in footer that has Orbit Services
+const footer = document.querySelector('footer');
+if (footer) {
+const footerFlexes = footer.querySelectorAll('.flex');
+for (let flex of footerFlexes) {
+if (flex.textContent.includes('Orbit Services')) {
+flex.innerHTML = `
+<img src="/assets/Main_Logo.jpeg" alt="Main logo" class="h-9 w-auto object-contain" />
+<span class="font-semibold text-lg"><span class="gradient-text">Services</span></span>
+`;
+break; // only do first one
+}
+}
+}
+}
+
+// Call the fix a few times to ensure React hydration doesn't override it
+setTimeout(fixBrandOnly, 200);
+setTimeout(fixBrandOnly, 600);
+setTimeout(fixBrandOnly, 1200);
+</script>
 </body></html>
